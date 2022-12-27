@@ -1,0 +1,41 @@
+name: Containers CI builder
+on:
+  push:
+  workflow_dispatch:
+
+# Ensures that only one deploy task per branch/environment will run at a time.
+concurrency:
+  group: gh-ref-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-push-images:
+    name: Build and push VS Code DevContainer image
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        esp-idf-version:
+          - v4.3
+          - v4.4
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v3
+
+      - name: Build images
+        id: build
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ github.repository }}
+          context: ${{ matrix.esp-idf-version }}/
+          tags: ${{ contains(github.ref_name, 'main') && 'latest' || github.ref_name }}-esp-idf-${{ matrix.esp-idf-version }}
+          containerfiles: ${{ matrix.esp-idf-version }}/Dockerfile
+
+      - name: Push container
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build.outputs.image }}
+          tags: ${{ steps.build.outputs.tags }}
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
