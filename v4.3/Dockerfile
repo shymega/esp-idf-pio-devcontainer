@@ -18,6 +18,9 @@ RUN apt-get update \
         ca-certificates \
         clang \
         curl \
+        libncurses5-dev \
+        flex \
+        bison \
         gcc \
         git \
         python3 \
