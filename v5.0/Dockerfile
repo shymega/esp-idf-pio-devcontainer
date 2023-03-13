@@ -40,7 +40,6 @@ RUN apt-get update \
     && chmod 0440 /etc/sudoers.d/$USERNAME \
     && usermod -a -G dialout $USERNAME \
     && usermod -a -G plugdev $USERNAME \
-    && curl -fLo /etc/udev/rules.d/99-platformio-udev.rules --create-dirs https://raw.githubusercontent.com/platformio/platformio-core/master/scripts/99-platformio-udev.rules \
     && echo ". /opt/esp/idf/export.sh" >> /home/$USERNAME/.bashrc \
     && /opt/esp/idf/install.sh \
     && chown -Rv $USERNAME:$USERNAME /opt/esp
