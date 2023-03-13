@@ -1,4 +1,4 @@
-FROM espressif/idf:v4.4 AS base
+FROM espressif/idf:release-v4.4 AS base
 
 ARG USERNAME=vscode
 ARG USER_UID=1000

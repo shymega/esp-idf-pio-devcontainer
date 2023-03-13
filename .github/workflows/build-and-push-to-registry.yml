@@ -18,6 +18,7 @@ jobs:
         esp-idf-version:
           - v4.3
           - v4.4
+          - v5.0
     steps:
       - name: Checkout sources
         uses: actions/checkout@v3
