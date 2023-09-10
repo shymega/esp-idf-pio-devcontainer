@@ -47,6 +47,6 @@ RUN apt-get update \
     && chown -Rv $USERNAME:$USERNAME /opt/esp
 
 USER $USERNAME
-RUN python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/master/scripts/get-platformio.py)"
+RUN python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py)"
 
 ENTRYPOINT ["/bin/bash"]
