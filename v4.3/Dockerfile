@@ -42,7 +42,7 @@ RUN apt-get update \
     && usermod -a -G dialout $USERNAME \
     && usermod -a -G plugdev $USERNAME \
     && echo ". /opt/esp/idf/export.sh" >> /home/$USERNAME/.bashrc \
-    && echo "export PATH:$PATH:$HOME/.platformio/penv/bin" >> /home/$USERNAME/.bashrc \
+    && echo "export PATH=$PATH:/home/$USERNAME/.platformio/penv/bin" >> /home/$USERNAME/.bashrc \
     && /opt/esp/idf/install.sh \
     && chown -Rv $USERNAME:$USERNAME /opt/esp
 
