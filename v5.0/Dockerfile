@@ -48,7 +48,7 @@ RUN apt-get update \
 
 USER $USERNAME
 
-ADD https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py /tmp/get-platformio.py
+ADD https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py /tmp
 RUN python3 /tmp/get-platformio.py
 
 ENTRYPOINT ["/bin/bash"]
