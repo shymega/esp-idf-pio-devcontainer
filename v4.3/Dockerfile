@@ -27,7 +27,7 @@ RUN apt-get update \
       python3-distutils \
       python3-pip \
       python3-setuptools \
-     	python3.8-venv \
+      python3.8-venv \
       srecord \
       sudo \
       udev \
@@ -35,6 +35,7 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
+    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh \
     && groupadd --gid $USER_GID $USERNAME \
     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
