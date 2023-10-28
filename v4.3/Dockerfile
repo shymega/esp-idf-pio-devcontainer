@@ -51,4 +51,4 @@ USER $USERNAME
 ADD --chown=$USERNAME:$USERNAME https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py /tmp
 RUN python3 /tmp/get-platformio.py
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "-l", "-c"]
