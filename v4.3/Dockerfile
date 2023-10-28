@@ -12,26 +12,26 @@ RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get -y dist-upgrade \
     && apt-get -y install \
-        bc \
-        sudo \
-        build-essential \
-        ca-certificates \
-        clang \
-        curl \
-        libncurses5-dev \
-        flex \
-        bison \
-        gcc \
-        git \
-        python3 \
-        python3-dev \
-        python3-distutils \
-        python3-pip \
-	python3.8-venv \
-        python3-setuptools \
-        srecord \
-        udev \
-        xz-utils \
+      bc \
+      bison \
+      build-essential \
+      ca-certificates \
+      clang \
+      curl \
+      flex \
+      gcc \
+      git \
+      libncurses5-dev \
+      python3 \
+      python3-dev \
+      python3-distutils \
+      python3-pip \
+      python3-setuptools \
+     	python3.8-venv \
+      srecord \
+      sudo \
+      udev \
+      xz-utils \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
@@ -44,7 +44,8 @@ RUN apt-get update \
     && echo ". /opt/esp/idf/export.sh" >> /home/$USERNAME/.bashrc \
     && echo "export PATH=$PATH:/home/$USERNAME/.platformio/penv/bin" >> /home/$USERNAME/.bashrc \
     && /opt/esp/idf/install.sh \
-    && chown -Rv $USERNAME:$USERNAME /opt/esp
+    && mkdir -p /IdeaProjects \ 
+    && chown -R $USERNAME:$USERNAME /opt/esp /IdeaProjects
 
 USER $USERNAME
 
